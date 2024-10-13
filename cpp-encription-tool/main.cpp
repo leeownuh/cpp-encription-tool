@@ -6,19 +6,35 @@ using namespace std;
 string caesarEncrypt(string text, int shift) {
     string result = "";
 
-    // Traverse through each character of the text
     for (int i = 0; i < text.length(); i++) {
         char ch = text[i];
 
-        // Encrypt uppercase letters
         if (isupper(ch)) {
             result += char(int(ch + shift - 65) % 26 + 65);
         }
-        // Encrypt lowercase letters
         else if (islower(ch)) {
             result += char(int(ch + shift - 97) % 26 + 97);
         }
-        // Leave non-alphabet characters unchanged
+        else {
+            result += ch;
+        }
+    }
+    return result;
+}
+
+// Function to decrypt the message using Caesar Cipher
+string caesarDecrypt(string text, int shift) {
+    string result = "";
+
+    for (int i = 0; i < text.length(); i++) {
+        char ch = text[i];
+
+        if (isupper(ch)) {
+            result += char(int(ch - shift - 65 + 26) % 26 + 65);
+        }
+        else if (islower(ch)) {
+            result += char(int(ch - shift - 97 + 26) % 26 + 97);
+        }
         else {
             result += ch;
         }
@@ -29,20 +45,32 @@ string caesarEncrypt(string text, int shift) {
 int main() {
     string message;
     int shift;
+    int choice;
 
-    // Get the message from the user
-    cout << "Enter a message to encrypt: ";
+    cout << "Caesar Cipher Tool\n";
+    cout << "1. Encrypt a message\n";
+    cout << "2. Decrypt a message\n";
+    cout << "Enter your choice: ";
+    cin >> choice;
+    cin.ignore();  // To consume the newline left by cin
+
+    cout << "Enter the message: ";
     getline(cin, message);
 
-    // Get the shift value from the user
-    cout << "Enter shift value (1-25): ";
+    cout << "Enter the shift value (1-25): ";
     cin >> shift;
 
-    // Encrypt the message
-    string encryptedMessage = caesarEncrypt(message, shift);
-
-    // Output the encrypted message
-    cout << "Encrypted Message: " << encryptedMessage << endl;
+    if (choice == 1) {
+        // Encrypt the message
+        string encryptedMessage = caesarEncrypt(message, shift);
+        cout << "Encrypted Message: " << encryptedMessage << endl;
+    } else if (choice == 2) {
+        // Decrypt the message
+        string decryptedMessage = caesarDecrypt(message, shift);
+        cout << "Decrypted Message: " << decryptedMessage << endl;
+    } else {
+        cout << "Invalid choice. Exiting program." << endl;
+    }
 
     return 0;
 }
