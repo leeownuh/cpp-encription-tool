@@ -8,6 +8,8 @@ This is a simple C++ implementation of the Caesar Cipher encryption and decrypti
 - **Decrypt a message** using Caesar Cipher.
 - Input validation for shift values and encryption/decryption options.
 - Allows repeated encryption and decryption within the same session.
+  ![image](https://github.com/user-attachments/assets/9d4c797c-e353-413c-bedc-b06b12505fb0)
+
 
 ## How to Run
 
